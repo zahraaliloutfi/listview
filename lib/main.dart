@@ -9,95 +9,110 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            title: Center(
-                child: Text(
-              'Gallery',
-              style: TextStyle(color: Colors.grey),
-            )),
-          ),
-          body: Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: ListView.separated(
-                  itemBuilder: (context, index) => gallery(),
-                  separatorBuilder: (context, index) => Container(
-                        color: Colors.white,
-                        child: SizedBox(
-                          height: 20,
-                        ),
-                      ),
-                  itemCount: 15),
+      home: SafeArea(
+        child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              title: Center(
+                  child: Text(
+                'Gallery',
+                style: TextStyle(color: Colors.grey),
+              )),
             ),
-          )),
+            body: Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: ListView.separated(
+                    itemBuilder: (context, index) => gallery(),
+                    separatorBuilder: (context, index) => Container(
+                          color: Colors.white,
+                          child: SizedBox(
+                            height: 20,
+                          ),
+                        ),
+                    itemCount: 15),
+              ),
+            )),
+      ),
     );
   }
 
-  Widget gallery() => Column(children: [
+  Widget gallery() => Column(mainAxisSize: MainAxisSize.max, children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(30)),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Image(
-                  image: AssetImage(
-                'assets/images/img1.jpg',
-              )),
-            ),
-            SizedBox(
-              width: 20,
-            ),
-            Container(
-                height: 220,
-                width: 220,
+            Expanded(
+              child: Container(
+                width: 200,
+                height: 200,
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(30)),
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 child: Image(
                     fit: BoxFit.cover,
                     image: AssetImage(
-                      'assets/images/img2.jpg',
-                    ))),
+                      'assets/images/img1.jpg',
+                    )),
+              ),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Expanded(
+              child: Container(
+                  width: 200,
+                  height: 200,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  child: Image(
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                        'assets/images/img2.jpg',
+                      ))),
+            ),
           ],
         ),
         SizedBox(
           height: 20,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              height: 220,
-              width: 220,
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(30)),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Image(
-                  fit: BoxFit.cover,
-                  image: AssetImage(
-                    'assets/images/img2.jpg',
-                  )),
-            ),
-            SizedBox(
-              width: 20,
-            ),
-            Container(
-                height: 220,
-                width: 220,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(30)),
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: Image(
-                    fit: BoxFit.cover,
-                    image: AssetImage(
-                      'assets/images/img3.jpg',
-                    ))),
-          ],
+        Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  child: Image(
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                        'assets/images/img2.jpg',
+                      )),
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: Container(
+                    width: 200,
+                    height: 200,
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    child: Image(
+                        fit: BoxFit.cover,
+                        image: AssetImage(
+                          'assets/images/img3.jpg',
+                        ))),
+              ),
+            ],
+          ),
         ),
       ]);
 }
